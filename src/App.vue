@@ -1,21 +1,26 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <Input :onClick="addIngredient" />
+  <Ingredients :ingredients="ingredients" :onRemove="removeIngredient" />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+<script setup lang="ts">
+  import { ref } from 'vue';
+  import Input from './components/Input.vue';
+  import Ingredients from './components/Ingredients.vue';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
+  const ingredients = ref([{ name: 'test', id: 0 }]);
+
+  const addIngredient = (name: string) => {
+    ingredients.value.push({ name, id: Date.now() })
   }
-});
+
+  const removeIngredient = (ingredientId: number) => {
+    console.log('ingredientId', ingredientId)
+    ingredients.value = ingredients.value.filter(({ id }) => id !== ingredientId)
+  }
 </script>
 
-<style>
+<!-- <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,4 +29,4 @@ export default defineComponent({
   color: #2c3e50;
   margin-top: 60px;
 }
-</style>
+</style> -->
