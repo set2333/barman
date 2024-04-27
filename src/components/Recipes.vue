@@ -19,7 +19,7 @@
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
         },
-      body: JSON.stringify({ ingredients: props.ingredients.value.map(({ name }) => name) }),
+        body: JSON.stringify({ ingredients: props.ingredients.map(({ name }) => name) }),
     })
       .then(response => response.text())
       .then(text => recipes.value = text)
