@@ -1,12 +1,17 @@
 <template>
-  <Input :onClick="addIngredient" />
-  <Ingredients :ingredients="ingredients" :onRemove="removeIngredient" />
+  <div id="app">
+    <Input :onClick="addIngredient" />
+    <Ingredients :ingredients="ingredients" :onRemove="removeIngredient" />
+    <Recipes :ingredients="ingredients" />
+  </div>
+
 </template>
 
 <script setup lang="ts">
   import { ref } from 'vue';
   import Input from './components/Input.vue';
   import Ingredients from './components/Ingredients.vue';
+  import Recipes from './components/Recipes.vue';
 
   const ingredients = ref([{ name: 'test', id: 0 }]);
 
@@ -15,18 +20,16 @@
   }
 
   const removeIngredient = (ingredientId: number) => {
-    console.log('ingredientId', ingredientId)
     ingredients.value = ingredients.value.filter(({ id }) => id !== ingredientId)
   }
 </script>
 
-<!-- <style>
+<style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 800px;
+  margin: 0 auto;
 }
-</style> -->
+</style>
