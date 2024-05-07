@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <a-typography>
+      <a-typography-title>{{ $t('header.title') }}</a-typography-title>
+      <a-typography-paragraph>{{ $t('header.text') }}</a-typography-paragraph>
+    </a-typography>
     <Input :onClick="addIngredient" />
     <Ingredients :ingredients="ingredients" :onRemove="removeIngredient" />
     <Recipes :ingredients="ingredients" />
@@ -13,7 +17,7 @@
   import Ingredients from './components/Ingredients.vue';
   import Recipes from './components/Recipes.vue';
 
-  const ingredients = ref([{ name: 'test', id: 0 }]);
+  const ingredients = ref([]);
 
   const addIngredient = (name: string) => {
     ingredients.value.push({ name, id: Date.now() })
@@ -25,11 +29,11 @@
 </script>
 
 <style>
-#app {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 800px;
-  margin: 0 auto;
-}
+  #app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 800px;
+    margin: 0 auto;
+  }
 </style>

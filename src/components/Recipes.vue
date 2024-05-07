@@ -1,15 +1,25 @@
 <template>
-  <div>
-    <textarea v-model="recipes"></textarea>
-    <button @click="getRecipes">Get</button>
-  </div>
+  <a-space direction="vertical">
+    <a-textarea
+      v-if="recipes"
+      v-model:value="recipes"
+      autosize
+    />
+    <a-button @click="getRecipes">{{ $t('button.get') }}</a-button>
+  </a-space>
+  <contextHolder />
 </template>
 
 <script setup lang="ts">
   import { ref } from 'vue';
+  import { notification } from 'ant-design-vue';
+  import { useI18n } from 'vue-i18n';
 
   const props = defineProps(['ingredients']);
   const recipes = ref('');
+  const { t } = useI18n();
+
+  const [api, contextHolder] = notification.useNotification();
 
   const getRecipes = () => {
     fetch(
@@ -23,26 +33,9 @@
     })
       .then(response => response.text())
       .then(text => recipes.value = text)
-  }
+      .catch(() => api.error({
+        message: t('error'),
+        placement: 'topRight',
+      }))
+  };
 </script>
-
-<style scoped>
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  button {
-    border: 2px solid black;
-    border-radius: 5px;
-    margin: 5px;
-    background-color: red;
-  }
-
-  textarea {
-    border: 2px solid black;
-    border-radius: 5px;
-    min-height: 150px;
-  }
-</style>

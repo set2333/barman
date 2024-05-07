@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const https = require('https');
 const fetch = require('node-fetch-commonjs');
 const { v4: uuidv4 } = require('uuid');
@@ -17,6 +18,7 @@ const httpsAgent = new https.Agent({
 });
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 app.use(fakeMiddleware);
 
 let accessToken = null;

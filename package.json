@@ -9,14 +9,17 @@
     "server": "node ./server/index.js"
   },
   "dependencies": {
+    "ant-design-vue": "^4.2.1",
     "body-parser": "^1.20.2",
     "core-js": "^3.8.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "node-fetch": "^3.3.2",
     "node-fetch-commonjs": "^3.3.2",
     "uuid": "^9.0.1",
-    "vue": "^3.2.13"
+    "vue": "^3.2.13",
+    "vue-i18n": "^9.13.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.4.0",

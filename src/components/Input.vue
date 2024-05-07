@@ -1,6 +1,8 @@
 <template>
-  <input v-model="value"/>
-  <button @click="handleClick">Add</button>
+  <a-space direction="vertical">
+    <a-input v-model:value="value" v-on:keyup.enter="handleClick" />
+    <a-button @click="handleClick">{{ $t('button.add') }}</a-button>
+  </a-space>
 </template>
 
 <script setup lang="ts">
@@ -14,17 +16,3 @@
     value.value = '';
   };
 </script>
-
-<style scoped>
-  input {
-    border: 2px solid black;
-    border-radius: 5px;
-  }
-
-  button {
-    border: 2px solid black;
-    border-radius: 5px;
-    margin: 5px;
-    background-color: red;
-  }
-</style>
